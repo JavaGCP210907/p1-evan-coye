@@ -11,7 +11,11 @@ public class Employee {
 	@Column(name = "ers_user_id")
 	private int id;
 	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="reimb_author")
+	@Column(name = "ers_username")
 	private String ers_username;
+	
 	private String ers_password;
 	private String user_fname;
 	private String user_lname;
