@@ -14,9 +14,8 @@ public class Reimbursement {
 	private String reimb_description;
 	private double reimb_amount;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="ers_username")
-	@Column(name="reimb_author")
 	private Employee e;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
