@@ -1,83 +1,87 @@
 package com.revature.models;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "reimbursements")
 public class Reimbursement {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "reimb_id")
-	private int id;
-	
+	private int reimb_id;
 	private String reimb_description;
 	private double reimb_amount;
+	private String reimb_author;
+	private String reimb_type;
+	private String reimb_status;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="ers_username")
-	private Employee e;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="type_id")
-	private ReimbType rt;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="status_id")
-	private ReimbStatus rs;
-
 	
 	//boilerplate code below
 	
+	
 	public Reimbursement() {
 		super();
-		
+		// TODO Auto-generated constructor stub
 	}
 
 
-	public Reimbursement(int id, String reimb_description, double reimb_amount, Employee e, ReimbType rt,
-			ReimbStatus rs) {
+
+	public Reimbursement(int reimb_id, String reimb_description, double reimb_amount, String reimb_author,
+			String reimb_type, String reimb_status) {
 		super();
-		this.id = id;
+		this.reimb_id = reimb_id;
 		this.reimb_description = reimb_description;
 		this.reimb_amount = reimb_amount;
-		this.e = e;
-		this.rt = rt;
-		this.rs = rs;
+		this.reimb_author = reimb_author;
+		this.reimb_type = reimb_type;
+		this.reimb_status = reimb_status;
 	}
 
 
-	public Reimbursement(String reimb_description, double reimb_amount, Employee e, ReimbType rt, ReimbStatus rs) {
+
+	public Reimbursement(String reimb_description, double reimb_amount, String reimb_author, String reimb_type,
+			String reimb_status) {
 		super();
 		this.reimb_description = reimb_description;
 		this.reimb_amount = reimb_amount;
-		this.e = e;
-		this.rt = rt;
-		this.rs = rs;
+		this.reimb_author = reimb_author;
+		this.reimb_type = reimb_type;
+		this.reimb_status = reimb_status;
 	}
+	
+	
+
+
+
+	public Reimbursement(String reimb_description, double reimb_amount, String reimb_author, String reimb_type) {
+		super();
+		this.reimb_description = reimb_description;
+		this.reimb_amount = reimb_amount;
+		this.reimb_author = reimb_author;
+		this.reimb_type = reimb_type;
+	}
+
 
 
 	@Override
 	public String toString() {
-		return "Reimbursement [id=" + id + ", reimb_description=" + reimb_description + ", reimb_amount=" + reimb_amount
-				+ ", e=" + e + ", rt=" + rt + ", rs=" + rs + "]";
+		return "Reimbursement [reimb_id=" + reimb_id + ", reimb_description=" + reimb_description + ", reimb_amount="
+				+ reimb_amount + ", reimb_author=" + reimb_author + ", reimb_type=" + reimb_type + ", reimb_status="
+				+ reimb_status + "]";
 	}
+
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((e == null) ? 0 : e.hashCode());
-		result = prime * result + id;
 		long temp;
 		temp = Double.doubleToLongBits(reimb_amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((reimb_author == null) ? 0 : reimb_author.hashCode());
 		result = prime * result + ((reimb_description == null) ? 0 : reimb_description.hashCode());
-		result = prime * result + ((rs == null) ? 0 : rs.hashCode());
-		result = prime * result + ((rt == null) ? 0 : rt.hashCode());
+		result = prime * result + reimb_id;
+		result = prime * result + ((reimb_status == null) ? 0 : reimb_status.hashCode());
+		result = prime * result + ((reimb_type == null) ? 0 : reimb_type.hashCode());
 		return result;
 	}
+
 
 
 	@Override
@@ -89,42 +93,45 @@ public class Reimbursement {
 		if (getClass() != obj.getClass())
 			return false;
 		Reimbursement other = (Reimbursement) obj;
-		if (e == null) {
-			if (other.e != null)
-				return false;
-		} else if (!e.equals(other.e))
-			return false;
-		if (id != other.id)
-			return false;
 		if (Double.doubleToLongBits(reimb_amount) != Double.doubleToLongBits(other.reimb_amount))
+			return false;
+		if (reimb_author == null) {
+			if (other.reimb_author != null)
+				return false;
+		} else if (!reimb_author.equals(other.reimb_author))
 			return false;
 		if (reimb_description == null) {
 			if (other.reimb_description != null)
 				return false;
 		} else if (!reimb_description.equals(other.reimb_description))
 			return false;
-		if (rs == null) {
-			if (other.rs != null)
-				return false;
-		} else if (!rs.equals(other.rs))
+		if (reimb_id != other.reimb_id)
 			return false;
-		if (rt == null) {
-			if (other.rt != null)
+		if (reimb_status == null) {
+			if (other.reimb_status != null)
 				return false;
-		} else if (!rt.equals(other.rt))
+		} else if (!reimb_status.equals(other.reimb_status))
+			return false;
+		if (reimb_type == null) {
+			if (other.reimb_type != null)
+				return false;
+		} else if (!reimb_type.equals(other.reimb_type))
 			return false;
 		return true;
 	}
 
 
-	public int getId() {
-		return id;
+
+	public int getReimb_id() {
+		return reimb_id;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+
+	public void setReimb_id(int reimb_id) {
+		this.reimb_id = reimb_id;
 	}
+
 
 
 	public String getReimb_description() {
@@ -132,9 +139,11 @@ public class Reimbursement {
 	}
 
 
+
 	public void setReimb_description(String reimb_description) {
 		this.reimb_description = reimb_description;
 	}
+
 
 
 	public double getReimb_amount() {
@@ -142,41 +151,56 @@ public class Reimbursement {
 	}
 
 
+
 	public void setReimb_amount(double reimb_amount) {
 		this.reimb_amount = reimb_amount;
 	}
 
 
-	public Employee getE() {
-		return e;
+
+	public String getReimb_author() {
+		return reimb_author;
 	}
 
 
-	public void setE(Employee e) {
-		this.e = e;
+
+	public void setReimb_author(String reimb_author) {
+		this.reimb_author = reimb_author;
 	}
 
 
-	public ReimbType getRt() {
-		return rt;
+
+	public String getReimb_type() {
+		return reimb_type;
 	}
 
 
-	public void setRt(ReimbType rt) {
-		this.rt = rt;
+
+	public void setReimb_type(String reimb_type) {
+		this.reimb_type = reimb_type;
 	}
 
 
-	public ReimbStatus getRs() {
-		return rs;
+
+	public String getReimb_status() {
+		return reimb_status;
 	}
 
 
-	public void setRs(ReimbStatus rs) {
-		this.rs = rs;
+
+	public void setReimb_status(String reimb_status) {
+		this.reimb_status = reimb_status;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
 }
-	

@@ -1,30 +1,16 @@
 package com.revature.models;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name="employees")
 public class Employee {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ers_user_id")
-	private int id;
-
 	private String ers_username;
 	private String ers_password;
 	private String user_fname;
-	private String user_lname;
+	private String user_lanme;
 	private String user_email;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="role_id")
-	private Role role;
-
+	private int role_id;
 	
 	
 	//boilerplate code below
-	
 	
 	public Employee() {
 		super();
@@ -32,40 +18,35 @@ public class Employee {
 	}
 
 
-
-	public Employee(int id, String ers_username, String ers_password, String user_fname, String user_lname,
-			String user_email, Role role) {
-		super();
-		this.id = id;
-		this.ers_username = ers_username;
-		this.ers_password = ers_password;
-		this.user_fname = user_fname;
-		this.user_lname = user_lname;
-		this.user_email = user_email;
-		this.role = role;
-	}
-
-
-
-	public Employee(String ers_username, String ers_password, String user_fname, String user_lname, String user_email,
-			Role role) {
+	public Employee(String ers_username, String ers_password, String user_fname, String user_lanme, String user_email,
+			int role_id) {
 		super();
 		this.ers_username = ers_username;
 		this.ers_password = ers_password;
 		this.user_fname = user_fname;
-		this.user_lname = user_lname;
+		this.user_lanme = user_lanme;
 		this.user_email = user_email;
-		this.role = role;
+		this.role_id = role_id;
 	}
+	
+	
 
+
+	public Employee(String user_fname, String user_lanme, String user_email, int role_id) {
+		super();
+		this.user_fname = user_fname;
+		this.user_lanme = user_lanme;
+		this.user_email = user_email;
+		this.role_id = role_id;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", ers_username=" + ers_username + ", ers_password=" + ers_password
-				+ ", user_fname=" + user_fname + ", user_lname=" + user_lname + ", user_email=" + user_email + "]";
+		return "Employee [ers_username=" + ers_username + ", ers_password=" + ers_password + ", user_fname="
+				+ user_fname + ", user_lanme=" + user_lanme + ", user_email=" + user_email + ", role_id=" + role_id
+				+ "]";
 	}
-
 
 
 	@Override
@@ -74,13 +55,12 @@ public class Employee {
 		int result = 1;
 		result = prime * result + ((ers_password == null) ? 0 : ers_password.hashCode());
 		result = prime * result + ((ers_username == null) ? 0 : ers_username.hashCode());
-		result = prime * result + id;
+		result = prime * result + role_id;
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
 		result = prime * result + ((user_fname == null) ? 0 : user_fname.hashCode());
-		result = prime * result + ((user_lname == null) ? 0 : user_lname.hashCode());
+		result = prime * result + ((user_lanme == null) ? 0 : user_lanme.hashCode());
 		return result;
 	}
-
 
 
 	@Override
@@ -102,7 +82,7 @@ public class Employee {
 				return false;
 		} else if (!ers_username.equals(other.ers_username))
 			return false;
-		if (id != other.id)
+		if (role_id != other.role_id)
 			return false;
 		if (user_email == null) {
 			if (other.user_email != null)
@@ -114,26 +94,13 @@ public class Employee {
 				return false;
 		} else if (!user_fname.equals(other.user_fname))
 			return false;
-		if (user_lname == null) {
-			if (other.user_lname != null)
+		if (user_lanme == null) {
+			if (other.user_lanme != null)
 				return false;
-		} else if (!user_lname.equals(other.user_lname))
+		} else if (!user_lanme.equals(other.user_lanme))
 			return false;
 		return true;
 	}
-
-
-
-	public int getId() {
-		return id;
-	}
-
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 
 
 	public String getErs_username() {
@@ -141,11 +108,9 @@ public class Employee {
 	}
 
 
-
 	public void setErs_username(String ers_username) {
 		this.ers_username = ers_username;
 	}
-
 
 
 	public String getErs_password() {
@@ -153,11 +118,9 @@ public class Employee {
 	}
 
 
-
 	public void setErs_password(String ers_password) {
 		this.ers_password = ers_password;
 	}
-
 
 
 	public String getUser_fname() {
@@ -165,23 +128,19 @@ public class Employee {
 	}
 
 
-
 	public void setUser_fname(String user_fname) {
 		this.user_fname = user_fname;
 	}
 
 
-
-	public String getUser_lname() {
-		return user_lname;
+	public String getUser_lanme() {
+		return user_lanme;
 	}
 
 
-
-	public void setUser_lname(String user_lname) {
-		this.user_lname = user_lname;
+	public void setUser_lanme(String user_lanme) {
+		this.user_lanme = user_lanme;
 	}
-
 
 
 	public String getUser_email() {
@@ -189,22 +148,20 @@ public class Employee {
 	}
 
 
-
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
 
 
-
-	public Role getRole() {
-		return role;
+	public int getRole_id() {
+		return role_id;
 	}
 
 
-
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRole_id(int role_id) {
+		this.role_id = role_id;
 	}
+	
 	
 	
 	
